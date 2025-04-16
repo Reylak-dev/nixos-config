@@ -9,11 +9,11 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.home-manager
-      ./drivers/vulkan.nix
-      ./drivers/nvidia.nix
-      ./virt/virt.nix
-      ./hyprland/hypr.nix
-      ./steam/steam.nix
+      ./system/drivers/vulkan.nix
+      ./system/drivers/nvidia.nix
+      ./system/virtualization/virt.nix
+      ./system/hyprland/hypr.nix
+      ./system/desktop-apps/desktop-apps.nix
     ];
 
   # Bootloader.
@@ -89,7 +89,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      reylak = import ../users/reylak/home.nix;
+      reylak = import ./users/reylak/home.nix;
     };
     backupFileExtension = "backup";
   };
@@ -158,15 +158,6 @@
     shell = pkgs.zsh;
     packages = with pkgs; [
     #  thunderbird
-      bitwarden-desktop
-      librewolf
-      onlyoffice-desktopeditors
-      discord
-      mangohud
-      goverlay
-      gamemode
-      github-desktop
-      obs-studio
     ];
   };
 
