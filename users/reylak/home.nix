@@ -15,13 +15,13 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     pkgs.hello
-    pkgs.vscodium
     pkgs.gimp
     pkgs.godot
     pkgs.cpu-x
@@ -38,6 +38,8 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  desktop-apps.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -71,7 +73,7 @@
   #  /etc/profiles/per-user/reylak/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "codium";
+    EDITOR = "vim";
   };
 
   gtk = {

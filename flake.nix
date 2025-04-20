@@ -10,15 +10,35 @@
      };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs:
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+      };
+    };
+  in
+  {
     # use "nixos", or your hostname as the name of the configuration
     # it's a better practice than "default" shown in the video
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit inputs system;};
       modules = [
         ./configuration.nix
-        inputs.home-manager.nixosModules.default
+        ./nixosModules
       ];
     };
+
+    #homeConfigurations."reylak" = inputs.home-manager.lib.homeManagerConfiguration {
+    #  modules = [
+    #    ./users/reylak/home.nix
+    #    ./users/reylak/user-modules
+    #  ];
+    #};
+
+    nixosModules.default = ./nixosModules;
+    homeManagerModules.default = ./homeManagerModules;
   };
 }

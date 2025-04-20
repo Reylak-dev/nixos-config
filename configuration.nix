@@ -8,12 +8,11 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.home-manager
-      ./system/drivers/vulkan.nix
-      ./system/drivers/nvidia.nix
-      ./system/virtualization/virt.nix
-      ./system/hyprland/hypr.nix
-      ./system/desktop-apps/desktop-apps.nix
+      inputs.home-manager.nixosModules.default
+      ./nixosModules/drivers/vulkan.nix
+      ./nixosModules/drivers/nvidia.nix
+      ./nixosModules/virtualization/virt.nix
+      ./nixosModules/hyprland/hypr.nix
     ];
 
   # Bootloader.
@@ -89,11 +88,18 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      reylak = import ./users/reylak/home.nix;
+      reylak = {
+          imports = [
+            ./users/reylak/home.nix
+            inputs.self.outputs.homeManagerModules.default
+          ];
+        };
+      };
     };
-    backupFileExtension = "backup";
-  };
-
+    #modules = [
+    #  ./users/reylak/home.nix
+    #  inputs.self.outputs.userModules.default
+    #];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -158,6 +164,12 @@
     shell = pkgs.zsh;
     packages = with pkgs; [
     #  thunderbird
+    #   discord
+    #   mangohud
+    #   goverlay
+    #   gamemode
+    #   gamescope
+    #   librewolf
     ];
   };
 
