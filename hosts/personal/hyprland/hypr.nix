@@ -31,15 +31,9 @@ in
       hyprcursor
       hyprshot
       nwg-look
-      #nwg-panel
-      #nwg-dock-hyprland
-      #nwg-displays
-      #nwg-bar
-      #nwg-clipman
-      #nwg-menu
       swaynotificationcenter
       start-menu
       notifications-client
       swayimg
-   ];
+   ]; 
 }

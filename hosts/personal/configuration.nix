@@ -2,24 +2,22 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, config, pkgs, ... }:
+{ inputs, outputs, config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./hyprland/hypr.nix
+      inputs.self.outputs.nixosModules.default
       inputs.home-manager.nixosModules.default
-      ./nixosModules/drivers/vulkan.nix
-      ./nixosModules/drivers/nvidia.nix
-      ./nixosModules/virtualization/virt.nix
-      ./nixosModules/hyprland/hypr.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "personal"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   services.dbus = {
@@ -96,10 +94,6 @@
         };
       };
     };
-    #modules = [
-    #  ./users/reylak/home.nix
-    #  inputs.self.outputs.userModules.default
-    #];
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -163,30 +157,18 @@
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
-    #  thunderbird
-    #   discord
-    #   mangohud
-    #   goverlay
-    #   gamemode
-    #   gamescope
-    #   librewolf
     ];
   };
 
   # Install firefox.
   programs.firefox.enable = true;
 
-  # Nvidia propietary drivers
-  #hardware = {
-  #  graphics.enable = true;
-  #  nvidia = {
-  #    modesetting.enable = true;
-  #    open = false;
-  #    nvidiaSettings = true;
-  #    nvidiaPersistenced = true;
-  #    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  #  };
-  #};
+
+  # Enable nvidia drivers
+  nvidiaGpu.enable = true;
+
+  # Enable vulkan tools and headers
+  vulkan.enable = true;
 
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   boot.kernelModules = [
