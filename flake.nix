@@ -26,7 +26,7 @@
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs system;};
       modules = [
-        ./hosts/hpnotebook/configuration.nix
+        ./hosts/<hostname>/configuration.nix
         ./nixosModules
       ];
     };
