@@ -12,12 +12,14 @@
       enable = true;
       extraPackages = with pkgs; [
         rofi
-        lxterminal
+        alacritty
         lxappearance
         i3status
         i3lock
         i3blocks
         polybar
+	pamixer
+	xorg.xev
       ];
     };
   };

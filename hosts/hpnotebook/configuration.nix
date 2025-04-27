@@ -72,7 +72,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -130,6 +130,8 @@
     htop
     btop
     screenfetch
+    pavucontrol
+    mate.engrampa
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

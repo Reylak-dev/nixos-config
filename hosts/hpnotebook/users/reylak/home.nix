@@ -78,16 +78,16 @@
   gtk = {
     enable = true;
     cursorTheme = {
-      package = pkgs.qogir-icon-theme;
-      name = "Qogir-Dark";
+      package = pkgs.colloid-icon-theme;
+      name = "Colloid-Purple-Dark";
     };
     theme = {
-      package = pkgs.qogir-theme;
-      name = "Qogir-Dark";
+      package = pkgs.colloid-gtk-theme;
+      name = "Colloid-Purple-Dark";
     };
     iconTheme = {
-      package = pkgs.qogir-icon-theme;
-      name = "Qogir-Dark";
+      package = pkgs.colloid-icon-theme;
+      name = "Colloid-Purple-Dark";
     };
   };
 
@@ -95,8 +95,8 @@
     enable = true;
     platformTheme.name = "gtk";
     style = {
-      name = "Qogir-Dark";
-      package = pkgs.qogir-kde;
+      name = "Colloid-Purple-Dark";
+      package = pkgs.colloid-kde;
     };
   };
 

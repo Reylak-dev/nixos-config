@@ -23,20 +23,25 @@
   {
     # use "nixos", or your hostname as the name of the configuration
     # it's a better practice than "default" shown in the video
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs system;};
-      modules = [
-        ./hosts/<hostname>/configuration.nix
-        ./nixosModules
-      ];
-    };
+    nixosConfigurations = {
 
-    #homeConfigurations."reylak" = inputs.home-manager.lib.homeManagerConfiguration {
-    #  modules = [
-    #    ./users/reylak/home.nix
-    #    ./users/reylak/user-modules
-    #  ];
-    #};
+      personal = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs system;};
+        modules = [
+          ./hosts/personal/configuration.nix
+          ./nixosModules
+        ];
+      };
+
+      hpnotebook = nixpkgs.lib.nixosSystem {
+	specialArgs = {inherit inputs system;};
+	modules = [
+	  ./hosts/hpnotebook/configuration.nix
+	  ./nixosModules
+	];
+      };
+
+    };
 
     nixosModules.default = ./nixosModules;
     homeManagerModules.default = ./homeManagerModules;

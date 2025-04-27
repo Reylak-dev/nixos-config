@@ -6,5 +6,6 @@
       ./drivers/nvidia.nix
       ./drivers/vulkan.nix
       ./virtualization/virt.nix
+      ./fonts/nerdFonts.nix
     ];
 }
