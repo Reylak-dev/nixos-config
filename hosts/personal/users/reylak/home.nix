@@ -41,6 +41,8 @@
 
   desktop-apps.enable = true;
 
+  dotfiles.i3.enable = true;
+
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
@@ -88,7 +90,7 @@
     };
     iconTheme = {
       package = pkgs.tela-circle-icon-theme;
-      name = "Tela-circle-dark";
+      name = "Tela-circle-purple-dark";
     };
   };
 
@@ -100,6 +102,8 @@
       package = pkgs.adwaita-qt;
     };
   };
+
+  services.picom.backend = "glx";
 
   # Install git
   programs.git = {

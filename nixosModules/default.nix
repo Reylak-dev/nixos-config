@@ -5,6 +5,7 @@
     [
       ./drivers/nvidia.nix
       ./drivers/vulkan.nix
+      ./dotfiles/i3/i3.nix
       ./virtualization/virt.nix
       ./fonts/nerdFonts.nix
     ];

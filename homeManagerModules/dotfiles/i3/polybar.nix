@@ -54,7 +54,7 @@
 
 	  font-0 = "Iosevka Nerd Font;2";
 
-	  modules-left = "applications systray";
+	  modules-left = "applications power systray";
 	  modules-center = "xworkspaces";
 	  modules-right = "pulseaudio memory cpu battery date";
 
@@ -191,6 +191,19 @@
 
 	  exec = "echo <format>";
 	  click-left = "rofi -show drun -show-icons";
+	};
+
+	"module/power" = let
+	  colors = config.services.polybar.config."colors";
+	in {
+	  type = "custom/script";
+
+	  label = "⏻";
+	  label-foreground = colors.primary;
+	  format = "<label>";
+
+	  exec = "echo <format>";
+	  click-left = "rofi -show power-menu -modi power-menu:rofi-power-menu";
 	};
 
 	"settings" = {

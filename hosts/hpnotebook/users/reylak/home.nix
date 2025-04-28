@@ -75,6 +75,8 @@
 
   dotfiles.i3.enable = true;
 
+  services.picom.backend = "xrender";
+
   gtk = {
     enable = true;
     cursorTheme = {

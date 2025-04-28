@@ -71,24 +71,37 @@
     services.picom = {
       enable = true;
       package = pkgs.picom-pijulius;
-      backend = "xrender";
+
       activeOpacity = 1.0;
       inactiveOpacity = 0.6;
       menuOpacity = 1.0;
-      fadeDelta = 2;
+
+      fade = true;
+
       vSync = true;
+
       shadow = true;
       shadowOpacity = 0.5;
+      shadowOffsets = [
+	15
+	15
+      ];
+
       settings = {
 	detect-client-opacity = true;
 
 	detect-rounded-corners = true;
 	corner-radius = 10;
-	round-corners = 10;
+	round-corners = 30;
 
 	opacity-rule = [ "100:class_g *?= 'Rofi'" ];
 
-	experimental-backends = false;
+	blur = {
+	  method = "gaussian";
+	  size = 40;
+	  deviation = 5.0;
+	};
+
       };
 
     };
@@ -99,5 +112,8 @@
 
     polybarConfig.enable = true;
 
+    home.packages = with pkgs; [
+      rofi-power-menu
+    ];
   };
 }
