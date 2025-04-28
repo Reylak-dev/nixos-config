@@ -13,16 +13,12 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "personal"; # Define your hostname.
+  networking.hostName = "hpnotebook"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  services.dbus = {
-    enable = true;
-    implementation = "broker";
-  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -30,12 +26,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Gnome-keyring
-  services.gnome.gnome-keyring.enable = true;
-
-  # Enable Nix flakes and commands
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Set your time zone.
   time.timeZone = "America/Argentina/Buenos_Aires";
@@ -54,45 +44,13 @@
     LC_TELEPHONE = "es_AR.UTF-8";
     LC_TIME = "es_AR.UTF-8";
   };
-  
-  programs.starship.enable = true;
-
-  # Enable zsh as default shell
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" "starship" ];
-      theme = "agnoster";
-    };
-  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the Cinnamon Desktop Environment.
-  #services.xserver.displayManager.lightdm.enable = true;
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-  services.xserver.desktopManager.cinnamon.enable = true;
-
-  # Home manager
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      reylak = {
-          imports = [
-            ./users/reylak/home.nix
-            inputs.self.outputs.homeManagerModules.default
-          ];
-        };
-      };
-    };
+  # Enable the XFCE Desktop Environment.
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -100,38 +58,20 @@
     variant = "";
   };
 
-  # Install all nerdfonts
-  fonts.packages = with pkgs; [ 
-    nerd-fonts.fira-code
-    nerd-fonts.iosevka
-    nerd-fonts.arimo 
-  ];
-
   # Configure console keymap
   console.keyMap = "la-latin1";
 
   # Enable CUPS to print documents.
-  services.printing = {
-    enable = true;
-    drivers = [ pkgs.hplipWithPlugin ];
-    browsing = true;
-    browsedConf = ''
-       BrowseDNSSDSubTypes _cups,_print
-       BrowseLocalProtocols all
-       BrowseRemoteProtocols all
-       CreateIPPPrinterQueues All
+  services.printing.enable = true;
 
-       BrowseProtocols all
-    '';
-  };
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-
+  # Enable gnome-keyring
+  services.gnome.gnome-keyring.enable = true;
+  
+  # Enable experimental features
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Enable sound with pipewire.
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -154,27 +94,27 @@
     isNormalUser = true;
     description = "reylak";
     extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.zsh;
     packages = with pkgs; [
+    #  thunderbird
     ];
   };
 
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      reylak = {
+        imports = [
+          ./users/reylak/home.nix
+          inputs.self.outputs.homeManagerModules.default
+        ];
+      };
+    };
+    backupFileExtension = "backup";
+  };
+
+
   # Install firefox.
   programs.firefox.enable = true;
-
-
-  # Enable nvidia drivers
-  nvidiaGpu.enable = true;
-
-  # Enable vulkan tools and headers
-  vulkan.enable = true;
-
-  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
-  boot.kernelModules = [
-    "v4l2loopback"
-  ];
-
-  # services.xserver.videoDrivers = ["nvidia"];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -182,28 +122,16 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     home-manager
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     kitty
-     htop
-     btop
-     screenfetch
-     wineWowPackages.waylandFull
-     glxinfo
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
+    home-manager
+    git
+    htop
+    btop
+    screenfetch
+    pavucontrol
+    mate.engrampa
   ];
-
-  programs.steam = {
-    enable = true;
-  };
-
-  programs.gamescope = {
-    enable = true;
-  };
-
-  programs.gamemode = {
-    enable = true;
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -15,16 +15,13 @@
   # release notes.
   home.stateVersion = "24.11"; # Please read the comment before changing.
 
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
-    pkgs.hello
-    pkgs.gimp
-    pkgs.godot
-    pkgs.cpu-x
+    # pkgs.hello
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -40,8 +37,6 @@
   ];
 
   desktop-apps.enable = true;
-
-  dotfiles.i3.enable = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -75,22 +70,26 @@
   #  /etc/profiles/per-user/reylak/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "vim";
+    # EDITOR = "emacs";
   };
+
+  dotfiles.i3.enable = true;
+
+  services.picom.backend = "xrender";
 
   gtk = {
     enable = true;
     cursorTheme = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
+      package = pkgs.colloid-icon-theme;
+      name = "Colloid-Purple-Dark";
     };
     theme = {
-      package = pkgs.orchis-theme;
-      name = "Orchis-Purple-Dark";
+      package = pkgs.colloid-gtk-theme;
+      name = "Colloid-Purple-Dark";
     };
     iconTheme = {
-      package = pkgs.tela-circle-icon-theme;
-      name = "Tela-circle-purple-dark";
+      package = pkgs.colloid-icon-theme;
+      name = "Colloid-Purple-Dark";
     };
   };
 
@@ -98,19 +97,12 @@
     enable = true;
     platformTheme.name = "gtk";
     style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
+      name = "Colloid-Purple-Dark";
+      package = pkgs.colloid-kde;
     };
   };
 
-  services.picom.backend = "glx";
 
-  # Install git
-  programs.git = {
-    enable = true;
-    userName = "Reylak-dev";
-    userEmail = "ANGULO18112008@gmail.com";
-  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
