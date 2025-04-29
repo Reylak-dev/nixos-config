@@ -77,8 +77,9 @@
       menuOpacity = 1.0;
 
       fade = true;
+      fadeDelta = 3;
 
-      vSync = true;
+      vSync = false;
 
       shadow = true;
       shadowOpacity = 0.5;
@@ -97,9 +98,9 @@
 	opacity-rule = [ "100:class_g *?= 'Rofi'" ];
 
 	blur = {
-	  method = "gaussian";
-	  size = 40;
-	  deviation = 5.0;
+
+	  method = "dual_kawase";
+
 	};
 
       };

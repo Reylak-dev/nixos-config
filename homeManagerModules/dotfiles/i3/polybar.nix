@@ -55,8 +55,8 @@
 	  font-0 = "Iosevka Nerd Font;2";
 
 	  modules-left = "applications power systray";
-	  modules-center = "xworkspaces";
-	  modules-right = "pulseaudio memory cpu battery date";
+	  modules-center = "i3";
+	  modules-right = "backlight pulseaudio memory cpu battery date";
 
 	  cursor-click = "pointer";
 	  cursor-scroll = "ns-resize";
@@ -76,27 +76,31 @@
 
         };
 
-	"module/xworkspaces" = let
+	"module/i3" = let
 	  colors = config.services.polybar.config."colors";
 	in {
 
-	  type = "internal/xworkspaces";
+	  type = "internal/i3";
 
-	  label-active = "%name%";
-	  label-active-background = colors.background-alt;
-	  label-active-underline = colors.primary;
-	  label-active-padding = 1;
+	  label-focused = "%index%";
+	  label-focused-background = colors.background-alt;
+	  label-focused-overline = colors.primary;
+	  label-focused-padding = 1;
 
-	  label-occupied = "%name%";
-	  label-occupied-padding = 1;
+	  label-unfocused = "%index%";
+	  label-unfocused-padding = 1;
 
 	  label-urgent = "%name%";
 	  label-urgent-background = colors.alert;
 	  label-urgent-padding = 1;
 
-	  label-empty = "%name%";
-	  label-empty-foreground = colors.disabled;
-	  label-empty-padding = 1;
+	  label-visible = "%name%";
+	  label-visible-foreground = colors.disabled;
+	  label-visible-padding = 1;
+
+	  label-mode = "%mode%";
+
+	  format = "<label-mode> <label-state>";
 
 	};
 
@@ -117,6 +121,25 @@
 
 	  label-muted = "";
 	  label-muted-foreground = colors.disabled;
+
+	};
+
+	"module/backlight" = let
+	  colors = config.services.polybar.config."colors";
+	in {
+
+	  type = "internal/backlight";
+
+	  format = "<ramp> <label>";
+
+	  label = "%percentage%%";
+
+	  ramp-0 = "🌕";
+	  ramp-1 = "🌔";
+	  ramp-2 = "🌓";
+	  ramp-3 = "🌒";
+	  ramp-4 = "🌑";
+	  ramp-color = colors.primary;
 
 	};
 
@@ -167,13 +190,16 @@
 	  format-discharging = "<ramp-capacity> <label-discharging>";
 
 	  label-charging = "%percentage%%";
-	  format-charging = "<ramp-capacity> <label-discharging>";
+	  format-charging = "<ramp-capacity> <label-charging>";
+
+	  format-color = colors.primary;
 
 	  ramp-capacity-0 = " ";
 	  ramp-capacity-1 = " ";
 	  ramp-capacity-2 = " ";
 	  ramp-capacity-3 = " ";
 	  ramp-capacity-4 = " ";
+	  ramp-capacity-color = colors.primary;
 
 	  full-at = 99;
 	  low-at = 10;
