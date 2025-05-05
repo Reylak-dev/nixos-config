@@ -19,7 +19,7 @@
         gaps = {
           inner = 10;
           outer = 3;
-        };
+	};
 
 	menu = "rofi -show drun -show-icons";
 
@@ -31,6 +31,7 @@
 	  { command = "pkill polybar && polybar"; always = true; }
 	  { command = "nm-applet"; }
 	  { command = "~/.fehbg"; }
+	  { command = "autotiling"; always = true; }
 	];
 
 	colors = {
@@ -38,12 +39,18 @@
 	  focused = {
 
 	    background = "#0f0f0f";
-	    border = "#9333a6";
-	    childBorder = "#9333a6";
-	    indicator = "#9333a6";
+	    border = "#00000000";
+	    childBorder = "#00000000";
+	    indicator = "#00000000";
 	    text = "#ffffff";
 
 	  };
+
+	};
+
+	window = {
+	  titlebar = false;
+	  border = 0;
 
 	};
 
@@ -70,7 +77,6 @@
 
     services.picom = {
       enable = true;
-      package = pkgs.picom-pijulius;
 
       activeOpacity = 1.0;
       inactiveOpacity = 0.6;
@@ -91,15 +97,15 @@
       settings = {
 	detect-client-opacity = true;
 
-	detect-rounded-corners = true;
-	corner-radius = 10;
-	round-corners = 30;
+	corner-radius = 15;
+	round-corners = 1;
 
 	opacity-rule = [ "100:class_g *?= 'Rofi'" ];
 
 	blur = {
 
 	  method = "dual_kawase";
+	  size = 8;
 
 	};
 
@@ -115,6 +121,7 @@
 
     home.packages = with pkgs; [
       rofi-power-menu
+      autotiling
     ];
   };
 }
