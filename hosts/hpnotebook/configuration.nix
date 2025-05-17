@@ -107,6 +107,7 @@
     packages = with pkgs; [
     #  thunderbird
     ];
+    shell = pkgs.ksh;
   };
 
   home-manager = {
