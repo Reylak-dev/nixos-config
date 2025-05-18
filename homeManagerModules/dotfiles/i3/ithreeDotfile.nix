@@ -60,9 +60,12 @@
 	  "${modifier}+Return" = "exec alacritty"; 
 	  "${modifier}+p" = "exec --no-startup-id librewolf";
 	  "${modifier}+Shift+f" = "exec --no-startup-id thunar";
+
 	  "XF86AudioLowerVolume" = "exec pamixer -d 5";
 	  "XF86AudioRaiseVolume" = "exec pamixer -i 5";
 	  "XF86AudioMute" = "exec pamixer --toggle-mute";
+
+	  "${modifier}+Print" = "exec escrotum ~/Imágenes/Screenshots/%Y-%m-%d-%H%M%S_$wx$h_escrotum.png";
 	};
 
 	defaultWorkspace = "workspace number 1";
@@ -122,6 +125,7 @@
     home.packages = with pkgs; [
       rofi-power-menu
       autotiling
+      escrotum
     ];
   };
 }
