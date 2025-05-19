@@ -28,6 +28,7 @@
 	];
 
 	startup = [
+	  { command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"; }
 	  { command = "pkill polybar && polybar"; always = true; }
 	  { command = "nm-applet"; }
 	  { command = "~/.fehbg"; }

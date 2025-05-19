@@ -23,6 +23,9 @@
     # # "Hello, world!" when run.
     pkgs.hello
     pkgs.gimp
+    pkgs.audacity
+    pkgs.kdePackages.kdenlive
+    pkgs.inkscape
     pkgs.godot
     pkgs.cpu-x
     # # It is sometimes useful to fine-tune packages, for example, by applying
@@ -38,6 +41,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
 
   desktop-apps.enable = true;
 
