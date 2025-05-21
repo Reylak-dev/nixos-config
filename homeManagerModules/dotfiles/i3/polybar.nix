@@ -18,13 +18,13 @@
 
 	"colors" = {
 
-	  background = "#0f0f0f";
-	  background-alt = "#353535";
-	  foreground = "#ffffff";
-	  primary = "#9333a6";
-	  secondary = "#bd63cf";
+	  background = "#292d3e";
+	  background-alt = "#535b8d";
+	  foreground = "#8890bb";
+	  primary = "#535b8d";
+	  secondary = "#8890bb";
 	  alert = "#A54242";
-	  disabled = "#707880";
+	  disabled = "#313649";
 
 	};
 
