@@ -35,20 +35,6 @@
 	  { command = "autotiling"; always = true; }
 	];
 
-	colors = {
-
-	  focused = {
-
-	    background = "#0f0f0f";
-	    border = "#00000000";
-	    childBorder = "#00000000";
-	    indicator = "#00000000";
-	    text = "#ffffff";
-
-	  };
-
-	};
-
 	window = {
 	  titlebar = false;
 	  border = 0;
@@ -76,7 +62,6 @@
 
     programs.rofi = {
       enable = true;
-      theme = "rounded-purple-dark";
     };
 
     services.picom = {
@@ -115,10 +100,6 @@
 
       };
 
-    };
-
-    programs.feh = {
-      enable = true;
     };
 
     polybarConfig.enable = true;

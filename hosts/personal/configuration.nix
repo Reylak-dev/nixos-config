@@ -104,13 +104,16 @@
     extraSpecialArgs = { inherit inputs; };
     users = {
       reylak = {
-          imports = [
+        imports = [
             ./users/reylak/home.nix
             inputs.self.outputs.homeManagerModules.default
-          ];
-        };
+        ];
+
       };
     };
+
+    backupFileExtension = "backup";
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {

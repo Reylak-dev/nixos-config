@@ -82,31 +82,6 @@
     EDITOR = "vim";
   };
 
-  gtk = {
-    enable = true;
-    cursorTheme = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-    };
-    theme = {
-      package = pkgs.orchis-theme;
-      name = "Orchis-Purple-Dark";
-    };
-    iconTheme = {
-      package = pkgs.tela-circle-icon-theme;
-      name = "Tela-circle-purple-dark";
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
-    };
-  };
-
   services.picom.backend = "glx";
 
   # Install git
