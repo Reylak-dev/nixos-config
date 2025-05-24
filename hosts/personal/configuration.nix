@@ -105,7 +105,7 @@
     users = {
       reylak = {
         imports = [
-            ./users/reylak/home.nix
+            ./home.nix
             inputs.self.outputs.homeManagerModules.default
         ];
 

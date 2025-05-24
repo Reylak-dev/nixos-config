@@ -40,7 +40,7 @@
 	specialArgs = {inherit inputs system;};
 	modules = [
 	  ./hosts/hpnotebook/configuration.nix
-	  ./nixosModulesa
+	  ./nixosModules
 	  inputs.stylix.nixosModules.stylix
 	];
       };
