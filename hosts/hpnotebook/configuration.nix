@@ -138,7 +138,7 @@
     git
     htop
     btop
-    screenfetch
+    fastfetch
     pavucontrol
     mate.engrampa
   ];

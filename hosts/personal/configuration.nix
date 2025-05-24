@@ -99,22 +99,6 @@
   };
   services.xserver.desktopManager.cinnamon.enable = true;
 
-  # Home manager
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      reylak = {
-        imports = [
-            ./home.nix
-            inputs.self.outputs.homeManagerModules.default
-        ];
-
-      };
-    };
-
-    backupFileExtension = "backup";
-  };
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "latam";
@@ -180,6 +164,22 @@
     ];
   };
 
+  # Home manager
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      reylak = {
+        imports = [
+            ./home.nix
+            inputs.self.outputs.homeManagerModules.default
+        ];
+
+      };
+    };
+
+    backupFileExtension = "backup";
+  };
+
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -209,8 +209,8 @@
      kitty
      htop
      btop
-     screenfetch
-     wineWowPackages.waylandFull
+     fastfetch
+     wineWowPackages.full
      glxinfo
   ];
 
