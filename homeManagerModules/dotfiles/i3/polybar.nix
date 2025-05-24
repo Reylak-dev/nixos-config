@@ -18,14 +18,13 @@
 
 	"colors" = {
 
-	  background = "#292d3e";
-	  background-alt = "#535b8d";
-	  foreground = "#8890bb";
-	  primary = "#535b8d";
-	  secondary = "#8890bb";
-	  alert = "#A54242";
-	  disabled = "#313649";
-
+	  background = lib.mkForce "${config.stylix.base16Scheme.base00}";
+	  background-alt = lib.mkForce "${config.stylix.base16Scheme.base00}";
+	  foreground = lib.mkForce "${config.stylix.base16Scheme.base05}";
+	  primary = lib.mkForce "${config.stylix.base16Scheme.base0D}";
+	  secondary = lib.mkForce "${config.stylix.base16Scheme.base0D}";
+	  alert = lib.mkForce "${config.stylix.base16Scheme.base08}";
+	  disabled = lib.mkForce "${config.stylix.base16Scheme.base0E}";
 	};
 
 	"bar/reylak" = let
