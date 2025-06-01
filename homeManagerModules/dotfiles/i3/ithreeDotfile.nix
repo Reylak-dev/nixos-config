@@ -43,10 +43,12 @@
 
 	keybindings = let
 	  modifier = config.xsession.windowManager.i3.config.modifier;
+	  menu = config.xsession.windowManager.i3.config.menu;
 	in lib.mkOptionDefault {
 	  "${modifier}+Return" = "exec alacritty"; 
-	  "${modifier}+p" = "exec --no-startup-id librewolf";
-	  "${modifier}+Shift+f" = "exec --no-startup-id thunar";
+	  "${modifier}+l" = "exec --no-startup-id librewolf";
+	  "${modifier}+Shift+u" = "exec --no-startup-id thunar";
+          "${modifier}+m" = "exec --no-startup-id ${menu}";
 
 	  "XF86AudioLowerVolume" = "exec pamixer -d 5";
 	  "XF86AudioRaiseVolume" = "exec pamixer -i 5";
