@@ -65,7 +65,8 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "latam";
-    variant = "";
+    variant = " ,dvorak";
+    options = "grp:alt_space_toggle";
   };
 
   # Configure console keymap

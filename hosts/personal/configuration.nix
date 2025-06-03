@@ -102,7 +102,7 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "latam";
-    variant = "dvorak";
+    variant = "dvorak,";
   };
 
   # Install all nerdfonts
@@ -113,7 +113,7 @@
   ];
 
   # Configure console keymap
-  console.keyMap = "la-latin1";
+  console.keyMap = "dvorak-la";
 
   # Enable CUPS to print documents.
   services.printing = {
