@@ -102,7 +102,7 @@
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "latam";
-    variant = "dvorak,";
+    variant = "dvorak";
   };
 
   # Install all nerdfonts
@@ -225,6 +225,8 @@
   programs.gamemode = {
     enable = true;
   };
+
+  programs.noisetorch.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

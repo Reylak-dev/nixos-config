@@ -49,6 +49,7 @@
 	  "${modifier}+l" = "exec --no-startup-id librewolf";
 	  "${modifier}+Shift+u" = "exec --no-startup-id thunar";
           "${modifier}+m" = "exec --no-startup-id ${menu}";
+	  "${modifier}+d" = "exec discord";
 
 	  "XF86AudioLowerVolume" = "exec pamixer -d 5";
 	  "XF86AudioRaiseVolume" = "exec pamixer -i 5";
