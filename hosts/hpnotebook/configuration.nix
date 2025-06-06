@@ -64,13 +64,13 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "latam";
-    variant = " ,dvorak";
+    layout = "us";
+    variant = "dvorak";
     options = "grp:alt_space_toggle";
   };
 
   # Configure console keymap
-  console.keyMap = "la-latin1";
+  console.keyMap = "dvorak";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
