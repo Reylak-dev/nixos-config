@@ -31,7 +31,7 @@
 
 	window = {
 	  titlebar = false;
-	  border = 0;
+	  border = 3;
 
 	};
 
@@ -58,7 +58,6 @@
 	  "XF86AudioRaiseVolume" = "exec pamixer -i 5";
 	  "XF86AudioMute" = "exec pamixer --toggle-mute";
 
-	  #"${modifier}+Print" = "exec escrotum ~/Imágenes/Screenshots/%Y-%m-%d-%H%M%S_$wx$h_escrotum.png";
 	};
 
 	defaultWorkspace = "workspace number 1";

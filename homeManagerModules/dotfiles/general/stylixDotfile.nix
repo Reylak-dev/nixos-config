@@ -45,6 +45,14 @@
 
     };
 
+    iconTheme = {
+
+      enable = true;
+      package = pkgs.dracula-icon-theme;
+      dark = "Dracula";
+
+    };
+
   };
 
 }
