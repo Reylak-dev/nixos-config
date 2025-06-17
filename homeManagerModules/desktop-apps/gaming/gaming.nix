@@ -7,10 +7,12 @@
 
   config = lib.mkIf config.gaming.enable {
 
+    programs.lutris.enable = true;
+
+    programs.mangohud.enable = true;
+
     home.packages = with pkgs; [
-      lutris
       heroic
-      mangohud
       goverlay
       steam
       steam-run

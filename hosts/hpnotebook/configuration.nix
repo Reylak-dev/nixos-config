@@ -9,7 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.self.outputs.nixosModules.default
-      inputs.home-manager.nixosModules.default
     ];
 
   # Bootloader.
@@ -111,16 +110,16 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      reylak = {
-        imports = [
-          ./home.nix
-          inputs.self.outputs.homeManagerModules.default
-        ];
-      };
+    extraSpecialArgs = {inherit inputs;};
+    users.reylak = {
+	home.stateVersion = "25.11";
+	imports = [
+	  ./home.nix
+	  inputs.self.outputs.homeManagerModules.default
+	];
     };
-    backupFileExtension = "backup";
+
+    backupFileExtension = "hm-backup";
   };
 
 
@@ -135,7 +134,6 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    home-manager
     git
     htop
     btop

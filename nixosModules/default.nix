@@ -6,7 +6,8 @@
       ./drivers/nvidia.nix
       ./drivers/vulkan.nix
       ./dotfiles/i3/i3.nix
-      ./dotfiles/general/stylix.nix
+      ./dotfiles/sway/sway.nix
+      ./dotfiles/general/stylixConfig.nix
       ./virtualization/virt.nix
       ./fonts/nerdFonts.nix
     ];

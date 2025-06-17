@@ -2,17 +2,21 @@
   description = "Nixos config flake";
 
   inputs = {
+
+    # nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    # home-manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix.url = "github:nix-community/stylix/release-25.05";
+    # stylix
+    stylix.url = "github:nix-community/stylix";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, ... }@inputs:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
@@ -23,8 +27,9 @@
     };
   in
   {
-    # use "nixos", or your hostname as the name of the configuration
-    # it's a better practice than "default" shown in the video
+
+    # NixOS Configurations
+
     nixosConfigurations = {
 
       personal = nixpkgs.lib.nixosSystem {
@@ -32,7 +37,8 @@
         modules = [
           ./hosts/personal/configuration.nix
           ./nixosModules
-	  inputs.stylix.nixosModules.stylix
+	  stylix.nixosModules.stylix
+	  home-manager.nixosModules.home-manager
         ];
       };
 
@@ -41,12 +47,41 @@
 	modules = [
 	  ./hosts/hpnotebook/configuration.nix
 	  ./nixosModules
-	  inputs.stylix.nixosModules.stylix
+	  stylix.nixosModules.stylix
+	  home-manager.nixosModules.home-manager
 	];
       };
 
     };
 
+    # home-manager configurations
+
+    homeConfigurations = {
+
+      "reylak@personal" = home-manager.lib.homeManagerConfiguration {
+
+        pkgs = "x86_64-linux";
+	extraSpecialArgs = {inherit inputs;};
+	modules = [
+	  ./hosts/personal/home.nix
+	  ./homeManagerModules
+	];
+      };
+
+      "reylak@hpnotebook" = home-manager.lib.homeManagerConfiguration {
+
+        pkgs = "x86_64-linux";
+	extraSpecialArgs = {inherit inputs;};
+	modules = [
+	  ./hosts/hpnotebook/home.nix
+	  ./homeManagerModules
+	];
+
+      };
+
+    };
+
+    # Modules
     nixosModules.default = ./nixosModules;
     homeManagerModules.default = ./homeManagerModules;
   };

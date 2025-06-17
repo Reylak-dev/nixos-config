@@ -9,7 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.self.outputs.nixosModules.default
-      inputs.home-manager.nixosModules.default
     ];
 
   # Bootloader.
@@ -93,10 +92,7 @@
 
   # Enable the Cinnamon Desktop Environment.
   #services.xserver.displayManager.lightdm.enable = true;
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
+  services.displayManager.ly.enable = true;
   services.xserver.desktopManager.cinnamon.enable = true;
 
   # Configure keymap in X11
@@ -166,18 +162,16 @@
 
   # Home manager
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      reylak = {
-        imports = [
-            ./home.nix
-            inputs.self.outputs.homeManagerModules.default
-        ];
-
-      };
+    extraSpecialArgs = {inherit inputs;};
+    users.reylak = {
+	home.stateVersion = "25.11";
+	imports = [
+	  ./home.nix
+	  inputs.self.outputs.homeManagerModules.default
+	];
     };
 
-    backupFileExtension = "backup";
+    backupFileExtension = "hm-backup";
   };
 
   # Install firefox.
@@ -203,7 +197,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     home-manager
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
      kitty
@@ -253,6 +246,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 
 }
